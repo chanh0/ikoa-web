@@ -1,5 +1,6 @@
 #!/bin/bash
 
+LogPrefix=$(hostname)
 ID=$1
 test "$2" = "mgs" && TYPE="cid" || TYPE=$2
 TaskId=$3
@@ -55,7 +56,7 @@ sleepHandler() {
 }
 
 if [[ $TaskId -eq 0 ]]; then
-    NAME="$(date +"%Y-%m-%dT%H:%M:%SZ")-download_info.csv"
+    NAME="$(date +"%Y-%m-%dT%H:%M:%SZ")-$LogPrefix-download_info.csv"
     echo "id,name,taskid,status,size,bitrate,multipart,tag,monthly" >> "$NAME"
     echo "$NAME" > FILENAME_VAR.txt
     mkdir -p backup
